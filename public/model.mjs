@@ -13,6 +13,7 @@ export function validate(s){
  req(s.schemaVersion===1,'Неизвестная версия схемы');req(typeof s.id==='string'&&s.id.length>0,'Нет id');req(typeof s.isDemo==='boolean','Нет признака demo');req(s.currency==='RUB'&&s.unit==='kopeck','Ожидаются RUB и kopeck');req(date(s.asOf),'Неверная дата среза');req(typeof s.generatedAt==='string'&&!isNaN(Date.parse(s.generatedAt)),'Неверное время формирования');
  for(const key of ['sources','months','receivables','orders','decisions'])req(Array.isArray(s[key]),key+': ожидается массив');
  if(errors.length)return errors;
+ req(s.months.length>0,'Нужен хотя бы один отчётный месяц');
  for(const key of ['sources','months','receivables','orders','decisions'])if(s[key].some(x=>!x||typeof x!=='object'||Array.isArray(x)))errors.push(key+': неверная строка');
  if(errors.length)return errors;
  const unique=(items,key,label)=>req(new Set(items.map(x=>x[key])).size===items.length,'Повтор '+label);
@@ -31,9 +32,11 @@ export function validate(s){
   req(c.opening+c.operating+c.investing+c.financing===c.closing,'ДДС не сходится: '+m.period);
   req(b.cash===c.closing,'Деньги ДДС и баланса расходятся: '+m.period);
   req(b.cash+b.receivables+b.inventory+b.fixed+b.otherAssets===b.payables+b.debt+b.equity,'Баланс не сходится: '+m.period);
+  if(!m.equityBridge){errors.push('Нет сверки капитала с прибылью');}else{amount(m.equityBridge.opening,'Начальный капитал');amount(m.equityBridge.otherChanges,'Прочие изменения капитала');req(m.equityBridge.opening+net(m.pnl)+m.equityBridge.otherChanges===b.equity,'Прибыль и изменение капитала не сходятся: '+m.period);}
  });
  const months=[...s.months].sort((a,b)=>a.period.localeCompare(b.period));
- months.forEach((m,i)=>{if(i&&m.cashflow&&months[i-1].cashflow)req(m.cashflow.opening===months[i-1].cashflow.closing,'Разрыв остатков денег между периодами');});
+ req(s.months.every((m,i)=>!i||m.period>s.months[i-1].period),'Месяцы должны идти по возрастанию');
+ months.forEach((m,i)=>{if(i&&m.cashflow&&months[i-1].cashflow)req(m.cashflow.opening===months[i-1].cashflow.closing,'Разрыв остатков денег между периодами');if(i&&m.equityBridge&&months[i-1].balance)req(m.equityBridge.opening===months[i-1].balance.equity,'Разрыв капитала между периодами');});
  if(!s.cashForecast||!Array.isArray(s.cashForecast.points)){errors.push('Нет прогноза');}else{
   req(date(s.cashForecast.asOf),'Дата прогноза');amount(s.cashForecast.reserve,'Резерв');refs(s.cashForecast.sourceIds);
   s.cashForecast.points.forEach((p,i,a)=>{if(!p||typeof p!=='object'){errors.push('Неверная точка прогноза');return;}req(date(p.date),'Дата точки прогноза');amount(p.amount,'Прогноз');if(i&&a[i-1])req(p.date>a[i-1].date,'Даты прогноза должны возрастать');});

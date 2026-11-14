@@ -44,8 +44,8 @@
       },
       "cashflow": {
         "opening": 700000000,
-        "operating": 200000000,
-        "investing": -100000000,
+        "operating": 100000000,
+        "investing": 0,
         "financing": 0,
         "closing": 800000000
       },
@@ -58,6 +58,10 @@
         "payables": 1200000000,
         "debt": 2500000000,
         "equity": 4800000000
+      },
+      "equityBridge": {
+        "opening": 4560000000,
+        "otherChanges": 0
       }
     },
     {
@@ -78,19 +82,23 @@
       "cashflow": {
         "opening": 800000000,
         "operating": 140000000,
-        "investing": -100000000,
+        "investing": 0,
         "financing": 0,
-        "closing": 840000000
+        "closing": 940000000
       },
       "balance": {
-        "cash": 840000000,
-        "receivables": 1100000000,
-        "inventory": 2000000000,
-        "fixed": 4600000000,
+        "cash": 940000000,
+        "receivables": 1220000000,
+        "inventory": 1800000000,
+        "fixed": 4700000000,
         "otherAssets": 200000000,
-        "payables": 1300000000,
-        "debt": 2400000000,
-        "equity": 5040000000
+        "payables": 1200000000,
+        "debt": 2500000000,
+        "equity": 5160000000
+      },
+      "equityBridge": {
+        "opening": 4800000000,
+        "otherChanges": 0
       }
     },
     {
@@ -109,21 +117,25 @@
         "tax": 80000000
       },
       "cashflow": {
-        "opening": 840000000,
+        "opening": 940000000,
         "operating": 220000000,
-        "investing": -200000000,
+        "investing": 0,
         "financing": 0,
-        "closing": 860000000
+        "closing": 1160000000
       },
       "balance": {
-        "cash": 860000000,
-        "receivables": 1240000000,
-        "inventory": 2200000000,
-        "fixed": 4500000000,
+        "cash": 1160000000,
+        "receivables": 1480000000,
+        "inventory": 1800000000,
+        "fixed": 4700000000,
         "otherAssets": 200000000,
-        "payables": 1400000000,
-        "debt": 2300000000,
-        "equity": 5300000000
+        "payables": 1200000000,
+        "debt": 2500000000,
+        "equity": 5640000000
+      },
+      "equityBridge": {
+        "opening": 5160000000,
+        "otherChanges": 0
       }
     }
   ],
@@ -136,7 +148,7 @@
     "points": [
       {
         "date": "2026-11-02",
-        "amount": 860000000
+        "amount": 1160000000
       },
       {
         "date": "2026-11-09",

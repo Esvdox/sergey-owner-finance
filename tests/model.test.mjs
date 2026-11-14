@@ -11,3 +11,5 @@ test('Убыточный заказ имеет отрицательную мар
 test('Неизвестный срок не считается нулевой просрочкой',()=>assert.equal(overdueDays({dueDate:null},'2026-11-02'),null));
 test('Невозможная дата отклоняется',()=>{const s=sample();s.asOf='2026-02-31';assert.ok(validate(s).length);});
 test('Строка вместо суммы и переполнение целого отклоняются',()=>{const s=sample();s.months[0].pnl.revenue='3400000000';s.orders[0].spent=Number.MAX_SAFE_INTEGER+1;assert.ok(validate(s).length>=2);});
+test('Сверка прибыли с изменением капитала обязательна',()=>{const s=sample();s.months[1].pnl.cost+=100;assert.ok(validate(s).some(x=>x.includes('капитала')));});
+test('Некорректная строка источника отклоняется без падения',()=>{const s=sample();s.sources.push(null);assert.ok(validate(s).length);});
