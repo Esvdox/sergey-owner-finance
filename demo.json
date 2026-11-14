@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "id": "demo-2026-11-v1",
+  "isDemo": true,
+  "generatedAt": "2026-11-02T09:00:00+03:00",
+  "asOf": "2026-11-02",
+  "currency": "RUB",
+  "unit": "kopeck",
+  "sources": [
+    {
+      "id": "erp",
+      "name": "Учебная ОСВ и закрытие месяца",
+      "asOf": "2026-10-31",
+      "status": "verified"
+    },
+    {
+      "id": "bank",
+      "name": "Учебный платёжный календарь",
+      "asOf": "2026-11-02",
+      "status": "preliminary"
+    },
+    {
+      "id": "orders",
+      "name": "Учебные бюджеты заказов",
+      "asOf": "2026-11-02",
+      "status": "preliminary"
+    }
+  ],
+  "months": [
+    {
+      "period": "2026-08",
+      "status": "closed",
+      "sourceIds": [
+        "erp"
+      ],
+      "pnl": {
+        "revenue": 3400000000,
+        "cost": 2400000000,
+        "opex": 660000000,
+        "planRevenue": 3500000000,
+        "other": 0,
+        "interest": 20000000,
+        "tax": 80000000
+      },
+      "cashflow": {
+        "opening": 700000000,
+        "operating": 200000000,
+        "investing": -100000000,
+        "financing": 0,
+        "closing": 800000000
+      },
+      "balance": {
+        "cash": 800000000,
+        "receivables": 1000000000,
+        "inventory": 1800000000,
+        "fixed": 4700000000,
+        "otherAssets": 200000000,
+        "payables": 1200000000,
+        "debt": 2500000000,
+        "equity": 4800000000
+      }
+    },
+    {
+      "period": "2026-09",
+      "status": "closed",
+      "sourceIds": [
+        "erp"
+      ],
+      "pnl": {
+        "revenue": 3800000000,
+        "cost": 2600000000,
+        "opex": 740000000,
+        "planRevenue": 4000000000,
+        "other": 0,
+        "interest": 20000000,
+        "tax": 80000000
+      },
+      "cashflow": {
+        "opening": 800000000,
+        "operating": 140000000,
+        "investing": -100000000,
+        "financing": 0,
+        "closing": 840000000
+      },
+      "balance": {
+        "cash": 840000000,
+        "receivables": 1100000000,
+        "inventory": 2000000000,
+        "fixed": 4600000000,
+        "otherAssets": 200000000,
+        "payables": 1300000000,
+        "debt": 2400000000,
+        "equity": 5040000000
+      }
+    },
+    {
+      "period": "2026-10",
+      "status": "closed",
+      "sourceIds": [
+        "erp"
+      ],
+      "pnl": {
+        "revenue": 4200000000,
+        "cost": 2800000000,
+        "opex": 820000000,
+        "planRevenue": 4500000000,
+        "other": 0,
+        "interest": 20000000,
+        "tax": 80000000
+      },
+      "cashflow": {
+        "opening": 840000000,
+        "operating": 220000000,
+        "investing": -200000000,
+        "financing": 0,
+        "closing": 860000000
+      },
+      "balance": {
+        "cash": 860000000,
+        "receivables": 1240000000,
+        "inventory": 2200000000,
+        "fixed": 4500000000,
+        "otherAssets": 200000000,
+        "payables": 1400000000,
+        "debt": 2300000000,
+        "equity": 5300000000
+      }
+    }
+  ],
+  "cashForecast": {
+    "asOf": "2026-11-02",
+    "reserve": 200000000,
+    "sourceIds": [
+      "bank"
+    ],
+    "points": [
+      {
+        "date": "2026-11-02",
+        "amount": 860000000
+      },
+      {
+        "date": "2026-11-09",
+        "amount": 480000000
+      },
+      {
+        "date": "2026-11-16",
+        "amount": -180000000
+      },
+      {
+        "date": "2026-11-23",
+        "amount": 120000000
+      },
+      {
+        "date": "2026-11-30",
+        "amount": 410000000
+      },
+      {
+        "date": "2026-12-07",
+        "amount": 340000000
+      },
+      {
+        "date": "2026-12-14",
+        "amount": 620000000
+      },
+      {
+        "date": "2026-12-21",
+        "amount": 540000000
+      },
+      {
+        "date": "2026-12-28",
+        "amount": 710000000
+      },
+      {
+        "date": "2027-01-04",
+        "amount": 640000000
+      },
+      {
+        "date": "2027-01-11",
+        "amount": 820000000
+      },
+      {
+        "date": "2027-01-18",
+        "amount": 740000000
+      },
+      {
+        "date": "2027-01-25",
+        "amount": 910000000
+      }
+    ]
+  },
+  "receivables": [
+    {
+      "id": "r1",
+      "name": "Заказчик А · договор 01",
+      "amount": 720000000,
+      "dueDate": "2026-11-15",
+      "sourceId": "erp"
+    },
+    {
+      "id": "r2",
+      "name": "Заказчик Б · договор 02",
+      "amount": 320000000,
+      "dueDate": "2026-10-15",
+      "sourceId": "erp"
+    },
+    {
+      "id": "r3",
+      "name": "Заказчик В · договор 03",
+      "amount": 150000000,
+      "dueDate": "2026-09-15",
+      "sourceId": "erp"
+    },
+    {
+      "id": "r4",
+      "name": "Заказчик Г · договор 04",
+      "amount": 50000000,
+      "dueDate": "2026-08-01",
+      "sourceId": "erp"
+    }
+  ],
+  "orders": [
+    {
+      "id": "o1",
+      "name": "Колесо обозрения",
+      "revenue": 3200000000,
+      "spent": 1800000000,
+      "remaining": 700000000,
+      "sourceId": "orders"
+    },
+    {
+      "id": "o2",
+      "name": "Карусель",
+      "revenue": 1800000000,
+      "spent": 1200000000,
+      "remaining": 740000000,
+      "sourceId": "orders"
+    },
+    {
+      "id": "o3",
+      "name": "Семейный аттракцион",
+      "revenue": 2400000000,
+      "spent": 900000000,
+      "remaining": 1000000000,
+      "sourceId": "orders"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "Обеспечить резерв 3,8 млн ₽",
+      "reason": "Прогнозный минимум −1,8 млн ₽; целевой резерв 2 млн ₽. Сценарий требует проверки сроков оплат.",
+      "owner": "Финансовый директор",
+      "dueDate": "2026-11-09"
+    },
+    {
+      "id": "d2",
+      "title": "Пересмотреть бюджет карусели",
+      "reason": "Ожидаемые затраты выше договорной выручки на 1,4 млн ₽.",
+      "owner": "Руководитель производства",
+      "dueDate": "2026-11-06"
+    }
+  ]
+}
