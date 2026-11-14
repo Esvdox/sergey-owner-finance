@@ -1,0 +1,13 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+import {validate,net,operating,margin,cashMinimum,overdueDays} from '../public/model.mjs';
+const sample=()=>JSON.parse(readFileSync(new URL('../public/demo.json',import.meta.url),'utf8'));
+test('Три формы учебного снимка сходятся',()=>assert.deepEqual(validate(sample()),[]));
+test('Прибыль отличается от денег, аванс не участвует в формуле',()=>{const m=sample().months.at(-1);assert.equal(operating(m.pnl),580000000);assert.equal(net(m.pnl),480000000);assert.notEqual(net(m.pnl),m.cashflow.closing-m.cashflow.opening);});
+test('Несходящийся баланс и ДДС блокируют импорт',()=>{const s=sample();s.months[0].balance.equity+=1;s.months[0].cashflow.closing+=1;assert.ok(validate(s).some(x=>x.includes('Баланс')));assert.ok(validate(s).some(x=>x.includes('ДДС')));});
+test('Неизвестная ссылка и дубль заказа блокируются',()=>{const s=sample();s.orders[0].sourceId='missing';s.orders.push(s.orders[0]);assert.ok(validate(s).length>=2);});
+test('Минимум учитывает отрицательные точки, а не только конечную',()=>assert.equal(cashMinimum(sample().cashForecast.points).amount,-180000000));
+test('Нулевая выручка не даёт бесконечную маржу',()=>assert.equal(margin({revenue:0,spent:100,remaining:10}),null));
+test('Убыточный заказ имеет отрицательную маржу',()=>assert.ok(margin(sample().orders[1])<0));
+test('Неизвестный срок не считается нулевой просрочкой',()=>assert.equal(overdueDays({dueDate:null},'2026-11-02'),null));
+test('Невозможная дата отклоняется',()=>{const s=sample();s.asOf='2026-02-31';assert.ok(validate(s).length);});
+test('Строка вместо суммы и переполнение целого отклоняются',()=>{const s=sample();s.months[0].pnl.revenue='3400000000';s.orders[0].spent=Number.MAX_SAFE_INTEGER+1;assert.ok(validate(s).length>=2);});
