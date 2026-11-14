@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "overflow": false,
+    "dialog": true,
+    "period": true,
+    "largeText": true,
+    "sources": 3,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "overflow": false,
+    "dialog": true,
+    "period": true,
+    "largeText": true,
+    "sources": 3,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "overflow": false,
+    "dialog": true,
+    "period": true,
+    "largeText": true,
+    "sources": 3,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "overflow": false,
+    "dialog": true,
+    "period": true,
+    "largeText": true,
+    "sources": 3,
+    "errors": []
+  }
+]
